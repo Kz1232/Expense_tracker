@@ -1,0 +1,10 @@
+#Environments
+.env
+env/
+venv/
+
+# Python
+*.pyc
+__pycache__/
+db.sqlite3
+
