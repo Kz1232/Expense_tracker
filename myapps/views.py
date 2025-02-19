@@ -29,6 +29,15 @@ def login_page(request):
                 message = "Login failed"
     return render(request,'authentication/login.html',context={"form":form,"message":message})
 
+def signup_page(request):
+    form =forms.SignupForm()
+    if request.method == 'POST':
+        form =forms.SignupForm(request.POST or None)
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            return redirect('/')
+    return render(request ,"authentication/signup.html",context={"form":form})
 
 def logoutView(request):
     logout(request)
