@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.contrib.auth import login , authenticate
+from django.shortcuts import render , redirect
+from django.contrib.auth import login , authenticate , logout
 from django.contrib.auth.decorators import login_required
 from . import forms
-
+import time
 # Create your views here.
 @login_required
 def indexView(request):
@@ -23,8 +23,15 @@ def login_page(request):
             if user is not None:
                 login(request,user)
                 message = f'Hello{user.username}! Logged in successfull'
+                time.sleep(5)
+                return redirect('/')
             else:
                 message = "Login failed"
     return render(request,'authentication/login.html',context={"form":form,"message":message})
 
 
+def logoutView(request):
+    logout(request)
+    return redirect('/')
+    
+    
