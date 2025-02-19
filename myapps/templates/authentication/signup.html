@@ -1,0 +1,9 @@
+{% extends "myapps/index.html" %} {% block content %}
+<h2>Sign Up</h2>
+{% if form.errors %} {{form.errors}} {% endif %}
+<form action="" method="post">
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit">Sign up</button>
+</form>
+
+{% endblock content %}
