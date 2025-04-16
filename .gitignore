@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+
+# Environment
+env/
+venv/
+ENV/
+.venv/
+.Python
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache
+.pytest_cache/
+
+# Migrations
+**/migrations/*.pyc
+**/migrations/__pycache__/
+**/migrations/*.py
+
+# Test / debug
+*.cover
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# mypy / type checking
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Node modules (if using npm for frontend)
+node_modules/
