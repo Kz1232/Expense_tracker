@@ -1,9 +1,10 @@
 from .models import User
 from django.forms import ModelForm
 
-class UserForm(ModelForm): 
+class LoginForm(ModelForm): 
     class Meta:
         model = User
         fields=['email','password','is_active']
+
 
 
