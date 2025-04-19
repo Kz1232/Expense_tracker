@@ -49,7 +49,7 @@ htmlcov/
 # Migrations
 **/migrations/*.pyc
 **/migrations/__pycache__/
-**/migrations/*.py
+
 
 # Test / debug
 *.cover

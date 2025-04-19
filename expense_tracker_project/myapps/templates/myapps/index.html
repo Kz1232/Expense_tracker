@@ -11,8 +11,9 @@
         <li>{{message}}</li>
         {% endfor %}
     </ul>
-    {%if user.is_authencticated %}
-    {{user}}
+    {%if user.is_authenticated %}
+    <p>{{user}}</p>
+    <button><a href="{% url 'authentication:logout' %}">Logout</a></button>
     {%endif %}
     <h1>hello there</h1>
     {% block content %}

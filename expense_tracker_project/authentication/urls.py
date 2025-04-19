@@ -5,4 +5,5 @@ urlpatterns =[
     # path('',views.testview,name='testview'),
     path('login/',views.login_view,name="login"),
     path('signup/',views.Signup_view,name='signup'),
+    path('logout/',views.logout_view,name='logout'),
 ]

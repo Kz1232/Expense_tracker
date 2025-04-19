@@ -1,5 +1,7 @@
 from .models import User
-from django import forms 
+from django import forms
+from django.core.exceptions import ValidationError 
+from django.contrib.auth.password_validation import validate_password
 
 
 class LoginForm(forms.ModelForm): 
@@ -16,7 +18,26 @@ class SignupForm(forms.ModelForm):
     
     def clean(self):
         cleaned_data = super().clean()
-        
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password and confirm_password and password != confirm_password :
+            raise ValidationError('Password are not matching')
+        return cleaned_data
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("User with email already exists !!!")
+        return email
+    
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password:
+            validate_password(password)
+        return password
+    
+
     
     
     def save(self, commit=True):
