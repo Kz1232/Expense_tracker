@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 from django.http import HttpResponse
 from django.urls import reverse
 from .forms import LoginForm , SignupForm
@@ -32,3 +32,7 @@ def Signup_view(request):
 
     context={'form':form}
     return render(request,"authentication/Signup.html",context)
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('myapps:homepage'))
