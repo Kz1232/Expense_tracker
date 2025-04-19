@@ -1,0 +1,12 @@
+{% extends 'myapps/index.html' %}
+
+{%block content %}
+<h1>Sign Up </h1>
+<h2>We are also inside the authenticate apps at the Sign page</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Sign Up</button>
+</form>
+
+{%endblock content %}
