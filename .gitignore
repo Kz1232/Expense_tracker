@@ -66,3 +66,6 @@ htmlcov/
 
 # Node modules (if using npm for frontend)
 node_modules/
+
+
+special_note.txt
