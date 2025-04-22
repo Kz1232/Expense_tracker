@@ -1,14 +1,10 @@
-{% extends 'myapps/index.html' %}
-
-{%block content %}
+{% extends 'myapps/index.html' %} {%block content %}
 <h2>We are also inside the authenticate apps</h2>
 <form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Log in</button>
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit">Log in</button>
 </form>
 <button><a href="{% url 'authentication:signup' %}">Register</a></button>
-
-
+<p><a href="{%url 'authentication:password_reset' %}">Forget Password?</a></p>
 
 {%endblock content %}
