@@ -5,10 +5,10 @@ from django.contrib.auth.password_validation import validate_password
 
 
 class LoginForm(forms.ModelForm): 
-    password = forms.CharField(widget = forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields=['email','password','is_active']
+        fields = ['email', 'password']
 
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -22,14 +22,15 @@ class SignupForm(forms.ModelForm):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
 
-        if password and confirm_password and password != confirm_password :
-            raise ValidationError('Password are not matching')
+        if password and confirm_password and password != confirm_password:
+            raise ValidationError('Passwords do not match')
         return cleaned_data
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise ValidationError("User with email already exists !!!")
+        if self.instance.pk is None:  # Only check for new users
+            if User.objects.filter(email=email).exists():
+                raise ValidationError("A user with this email address already exists.")
         return email
     
     def clean_password(self):

@@ -8,19 +8,20 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 def login_view(request):
-    form = LoginForm()
     if request.method == 'POST':
-        email = request.POST['email']
-        password =request.POST['password']
-        user = authenticate(request,email = email , password = password) 
-        if user is not None:
-            login(request,user)
-            return redirect(reverse('myapps:homepage'))
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        if email and password:
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(reverse('myapps:homepage'))
+        form = LoginForm()
+    else:
+        form = LoginForm()
 
-
-
-    context={'form':form}
-    return render(request ,"authentication/login.html",context)
+    context = {'form': form}
+    return render(request, "authentication/login.html", context)
 
 
 def Signup_view(request):
