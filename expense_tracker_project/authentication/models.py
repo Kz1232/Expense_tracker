@@ -29,13 +29,19 @@ class customBaseManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    email = models.EmailField(unique= True)
-    username=None
+    email = models.EmailField(unique=True, db_index=True)
+    username = None
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS=[]
+    REQUIRED_FIELDS = []
 
-    objects=customBaseManager()
+    objects = customBaseManager()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['email', 'is_active']),
+            models.Index(fields=['date_joined']),
+        ]
 
     def __str__(self):
         return self.email
