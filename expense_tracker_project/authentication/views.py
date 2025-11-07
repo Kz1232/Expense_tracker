@@ -9,7 +9,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 def login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
         email = request.POST.get('email')
         password = request.POST.get('password')
         if email and password:
@@ -17,6 +16,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect(reverse('myapps:homepage'))
+        form = LoginForm()
     else:
         form = LoginForm()
 

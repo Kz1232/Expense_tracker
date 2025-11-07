@@ -22,15 +22,15 @@ class SignupForm(forms.ModelForm):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
 
-        if password and confirm_password and password != confirm_password :
-            raise ValidationError('Password are not matching')
+        if password and confirm_password and password != confirm_password:
+            raise ValidationError('Passwords do not match')
         return cleaned_data
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if self.instance.pk is None:  # Only check for new users
             if User.objects.filter(email=email).exists():
-                raise ValidationError("User with email already exists !!!")
+                raise ValidationError("A user with this email address already exists.")
         return email
     
     def clean_password(self):
