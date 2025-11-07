@@ -14,12 +14,26 @@ py -m venv env
 pip install -r requirements.txt
 ```
 
-4. Migrate the required tables using given commands:
+4. Configure environment variables:
+```
+cp expense_tracker_project/.env.example expense_tracker_project/.env
+```
+Edit the `.env` file with your actual SECRET_KEY and email credentials.
+
+5. Migrate the required tables using given commands:
 ```
 py manage.py migrate
 ```
 
-5. Run the site:
+6. Run the site:
 ```
 py manage.py runserver
 ```
+
+## Performance Improvements
+
+This application has been optimized for better performance and security. See [PERFORMANCE_IMPROVEMENTS.md](PERFORMANCE_IMPROVEMENTS.md) for details on:
+- Database indexing optimizations
+- Form and view performance improvements
+- Admin interface enhancements
+- Security best practices with environment variables
